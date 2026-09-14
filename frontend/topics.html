@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>StudyPulse - Learning Hub</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f4f8fc;
+
+            color: #172033;
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .learning-nav {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 17px 6%;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #dce7ef;
+
+            box-shadow:
+                0 2px 12px rgba(
+                    30,
+                    70,
+                    100,
+                    0.04
+                );
+        }
+
+
+        .learning-brand {
+            color: #1769aa;
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            letter-spacing: -0.4px;
+        }
+
+
+        .learning-nav a {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            color: #43556b;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition: 0.2s;
+        }
+
+
+        .learning-nav a:hover {
+            color: #1769aa;
+
+            transform: translateX(-2px);
+        }
+
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .topics-page {
+            width: 90%;
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding: 32px 0 60px;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .learning-hero {
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e7f4fd,
+                    #f8fbfe
+                );
+
+            border: 1px solid #cfe4f2;
+
+            border-radius: 22px;
+
+            padding: 46px 30px;
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .learning-hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 170px;
+            height: 170px;
+
+            right: -70px;
+            top: -80px;
+
+            border-radius: 50%;
+
+            background: rgba(
+                93,
+                162,
+                207,
+                0.08
+            );
+        }
+
+
+        .learning-hero h1 {
+            position: relative;
+
+            z-index: 1;
+
+            margin: 0 0 11px;
+
+            color: #173b5c;
+
+            font-size: 34px;
+
+            letter-spacing: -0.6px;
+        }
+
+
+        .learning-hero p {
+            position: relative;
+
+            z-index: 1;
+
+            max-width: 650px;
+
+            margin: 0 auto;
+
+            color: #687d91;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        .learning-section {
+            background: #ffffff;
+
+            border: 1px solid #dce7ef;
+
+            border-radius: 18px;
+
+            padding: 29px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 7px 22px rgba(
+                    30,
+                    70,
+                    100,
+                    0.05
+                );
+        }
+
+
+        .learning-section h2 {
+            margin: 0 0 7px;
+
+            color: #173b5c;
+
+            font-size: 22px;
+
+            letter-spacing: -0.2px;
+        }
+
+
+        .learning-section > p {
+            margin: 0;
+
+            color: #718398;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           SUBJECT BUTTONS
+        ========================= */
+
+        #subjectButtons {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 14px;
+
+            margin-top: 21px;
+        }
+
+
+        .subject-button {
+            width: 100%;
+
+            padding: 20px;
+
+            border: 1px solid #d7e5ee;
+
+            border-radius: 13px;
+
+            background: #f9fcfe;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s,
+                border-color 0.2s,
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+
+        .subject-button:hover {
+            background: #eef8fd;
+
+            border-color: #91c4e1;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(
+                    35,
+                    100,
+                    145,
+                    0.08
+                );
+        }
+
+
+        .subject-button:active {
+            transform: translateY(0);
+        }
+
+
+        .subject-button h3 {
+            margin: 0 0 7px;
+
+            color: #1769aa;
+
+            font-size: 17px;
+
+            font-weight: 700;
+        }
+
+
+        .subject-button p {
+            margin: 0;
+
+            color: #718398;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           TOPIC AREA
+        ========================= */
+
+        #topicsContainer {
+            margin-top: 22px;
+        }
+
+
+        .topic-card {
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+            padding: 17px;
+
+            margin-bottom: 12px;
+
+            background: #f9fcfe;
+
+            border: 1px solid #dce7ef;
+
+            border-radius: 13px;
+
+            transition:
+                border-color 0.2s,
+                box-shadow 0.2s,
+                transform 0.2s;
+        }
+
+
+        .topic-card:hover {
+            border-color: #a9cde3;
+
+            box-shadow:
+                0 6px 18px rgba(
+                    35,
+                    100,
+                    145,
+                    0.07
+                );
+
+            transform: translateY(-1px);
+        }
+
+
+        .topic-number {
+            width: 42px;
+
+            height: 42px;
+
+            min-width: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #e5f3fc;
+
+            color: #1769aa;
+
+            font-size: 14px;
+
+            font-weight: 800;
+        }
+
+
+        .topic-info {
+            flex: 1;
+
+            min-width: 0;
+        }
+
+
+        .topic-info h3 {
+            margin: 0 0 5px;
+
+            color: #173b5c;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            line-height: 1.4;
+        }
+
+
+        .topic-info p {
+            margin: 0;
+
+            color: #718398;
+
+            font-size: 13px;
+
+            line-height: 1.4;
+        }
+
+
+        /* =========================
+           QUIZ BUTTON
+        ========================= */
+
+        .quiz-button {
+            flex-shrink: 0;
+
+            border: none;
+
+            border-radius: 9px;
+
+            padding: 11px 16px;
+
+            background: #1976b9;
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            white-space: nowrap;
+
+            transition:
+                background 0.2s,
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+
+        .quiz-button:hover {
+            background: #125b91;
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 6px 14px rgba(
+                    25,
+                    118,
+                    185,
+                    0.16
+                );
+        }
+
+
+        .quiz-button:active {
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty-topics {
+            padding: 27px 20px;
+
+            border: 1px dashed #cbd9e4;
+
+            border-radius: 12px;
+
+            background: #f8fbfd;
+
+            color: #718398;
+
+            text-align: center;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .topics-page {
+                width: 92%;
+
+                padding-top: 25px;
+            }
+
+
+            .learning-section {
+                padding: 25px 22px;
+            }
+
+
+            .learning-hero {
+                padding: 38px 22px;
+            }
+
+
+            .learning-hero h1 {
+                font-size: 30px;
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .learning-nav {
+                padding: 15px 5%;
+            }
+
+
+            .learning-brand {
+                font-size: 22px;
+            }
+
+
+            .learning-nav a {
+                font-size: 13px;
+            }
+
+
+            .topics-page {
+                width: 94%;
+
+                padding: 20px 0 40px;
+            }
+
+
+            .learning-hero {
+                padding: 32px 18px;
+
+                border-radius: 18px;
+            }
+
+
+            .learning-hero h1 {
+                font-size: 27px;
+            }
+
+
+            .learning-hero p {
+                font-size: 14px;
+            }
+
+
+            .learning-section {
+                padding: 22px 17px;
+
+                border-radius: 16px;
+            }
+
+
+            .learning-section h2 {
+                font-size: 20px;
+            }
+
+
+            #subjectButtons {
+                grid-template-columns: 1fr;
+
+                gap: 10px;
+            }
+
+
+            .subject-button {
+                padding: 17px;
+            }
+
+
+            .topic-card {
+                align-items: flex-start;
+
+                flex-wrap: wrap;
+
+                gap: 12px;
+
+                padding: 15px;
+            }
+
+
+            .topic-number {
+                width: 38px;
+
+                height: 38px;
+
+                min-width: 38px;
+            }
+
+
+            .topic-info {
+                width: calc(
+                    100% - 50px
+                );
+            }
+
+
+            .topic-info h3 {
+                font-size: 15px;
+            }
+
+
+            .topic-info p {
+                font-size: 12px;
+            }
+
+
+            .quiz-button {
+                width: 100%;
+
+                margin-left: 50px;
+
+                padding: 11px;
+            }
+
+        }
+
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media (max-width: 450px) {
+
+            .learning-nav {
+                padding: 14px 4%;
+            }
+
+
+            .learning-brand {
+                font-size: 20px;
+            }
+
+
+            .learning-nav a {
+                font-size: 12px;
+            }
+
+
+            .topics-page {
+                width: 95%;
+            }
+
+
+            .learning-hero {
+                padding: 27px 15px;
+            }
+
+
+            .learning-hero h1 {
+                font-size: 24px;
+            }
+
+
+            .learning-hero p {
+                font-size: 13px;
+            }
+
+
+            .learning-section {
+                padding: 20px 14px;
+            }
+
+
+            .topic-card {
+                gap: 10px;
+            }
+
+
+            .quiz-button {
+                margin-left: 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav class="learning-nav">
+
+        <div class="learning-brand">
+            StudyPulse
+        </div>
+
+
+        <a href="index.html">
+            ← Dashboard
+        </a>
+
+    </nav>
+
+
+    <main class="topics-page">
+
+
+        <!-- =========================
+             HERO
+        ========================= -->
+
+        <section class="learning-hero">
+
+            <h1>
+                Learning Hub 📚
+            </h1>
+
+
+            <p>
+                Choose a subject, explore its topics,
+                and test your knowledge with quizzes.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             SUBJECT SELECTION
+        ========================= -->
+
+        <section class="learning-section">
+
+            <h2>
+                Choose a Subject
+            </h2>
+
+
+            <p>
+                Select a subject to view the available topics.
+            </p>
+
+
+            <div id="subjectButtons"></div>
+
+        </section>
+
+
+        <!-- =========================
+             TOPICS
+        ========================= -->
+
+        <section
+            class="learning-section"
+            id="topicsSection"
+        >
+
+            <h2 id="selectedSubjectTitle">
+                Select a subject to begin
+            </h2>
+
+
+            <p id="selectedSubjectDescription">
+                Your topics will appear here.
+            </p>
+
+
+            <div id="topicsContainer">
+
+                <div class="empty-topics">
+                    📖 Choose a subject above to start learning.
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script>
+
+
+        /* =========================
+           SUBJECT TOPICS
+        ========================= */
+
+        const subjectTopics = {
+
+            "DBMS": [
+                "Introduction to DBMS",
+                "ER Model",
+                "Relational Model",
+                "SQL",
+                "Normalization"
+            ],
+
+
+            "Software Engineering": [
+                "Introduction to Software Engineering",
+                "Software Development Life Cycle",
+                "Software Process Models",
+                "Requirements Engineering",
+                "Software Testing"
+            ],
+
+
+            "Computer Networks": [
+                "Introduction to Computer Networks",
+                "Network Topologies",
+                "OSI Model",
+                "TCP/IP Model",
+                "Network Devices"
+            ],
+
+
+            "Operating Systems": [
+                "Introduction to Operating Systems",
+                "Process Management",
+                "CPU Scheduling",
+                "Memory Management",
+                "File Management"
+            ],
+
+
+            "Data Structures": [
+                "Introduction to Data Structures",
+                "Arrays",
+                "Linked Lists",
+                "Stacks",
+                "Queues"
+            ],
+
+
+            "Java": [
+                "Introduction to Java",
+                "Variables and Data Types",
+                "Control Statements",
+                "Classes and Objects",
+                "Inheritance"
+            ],
+
+
+            "Python": [
+                "Introduction to Python",
+                "Variables and Data Types",
+                "Conditional Statements",
+                "Loops",
+                "Functions"
+            ],
+
+
+            "Web Development": [
+                "HTML Basics",
+                "CSS Basics",
+                "JavaScript Basics",
+                "DOM Manipulation",
+                "Web Forms"
+            ],
+
+
+            "Cyber Security": [
+                "Introduction to Cyber Security",
+                "Cyber Threats",
+                "Cyber Crimes",
+                "Network Security",
+                "Data Protection"
+            ],
+
+
+            "Artificial Intelligence": [
+                "Introduction to AI",
+                "Types of AI",
+                "Machine Learning Basics",
+                "AI Applications",
+                "AI and Society"
+            ]
+
+        };
+
+
+        /* =========================
+           DOM REFERENCES
+        ========================= */
+
+        const subjectButtons =
+            document.getElementById(
+                "subjectButtons"
+            );
+
+
+        const topicsContainer =
+            document.getElementById(
+                "topicsContainer"
+            );
+
+
+        const selectedSubjectTitle =
+            document.getElementById(
+                "selectedSubjectTitle"
+            );
+
+
+        const selectedSubjectDescription =
+            document.getElementById(
+                "selectedSubjectDescription"
+            );
+
+
+        const topicsSection =
+            document.getElementById(
+                "topicsSection"
+            );
+
+
+        /* =========================
+           CREATE SUBJECT BUTTONS
+        ========================= */
+
+        function createSubjectButtons() {
+
+            subjectButtons.innerHTML = "";
+
+
+            Object.keys(subjectTopics)
+                .forEach(function(subject) {
+
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    button.className =
+                        "subject-button";
+
+
+                    button.innerHTML = `
+
+                        <h3>
+                            ${subject}
+                        </h3>
+
+                        <p>
+                            ${subjectTopics[subject].length}
+                            topics available
+                        </p>
+
+                    `;
+
+
+                    button.onclick =
+                        function() {
+
+                            showTopics(subject);
+
+                        };
+
+
+                    subjectButtons.appendChild(
+                        button
+                    );
+
+                });
+
+        }
+
+
+        /* =========================
+           SHOW TOPICS
+        ========================= */
+
+        function showTopics(subject) {
+
+            const topics =
+                subjectTopics[subject];
+
+
+            selectedSubjectTitle.textContent =
+                subject;
+
+
+            selectedSubjectDescription.textContent =
+                "Explore a topic and test your knowledge with a quiz.";
+
+
+            topicsContainer.innerHTML = "";
+
+
+            topics.forEach(
+                function(topic, index) {
+
+                    const topicCard =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    topicCard.className =
+                        "topic-card";
+
+
+                    topicCard.innerHTML = `
+
+                        <div class="topic-number">
+                            ${index + 1}
+                        </div>
+
+
+                        <div class="topic-info">
+
+                            <h3>
+                                ${topic}
+                            </h3>
+
+                            <p>
+                                Learn the basics
+                                and check your
+                                understanding.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="quiz-button"
+                            onclick="startQuiz('${subject}', '${topic}')"
+                        >
+                            Take Quiz →
+                        </button>
+
+                    `;
+
+
+                    topicsContainer.appendChild(
+                        topicCard
+                    );
+
+                }
+            );
+
+
+            topicsSection.scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "start"
+
+            });
+
+        }
+
+
+        /* =========================
+           START QUIZ
+        ========================= */
+
+        function startQuiz(
+            subject,
+            topic
+        ) {
+
+            localStorage.setItem(
+                "selectedQuizSubject",
+                subject
+            );
+
+
+            localStorage.setItem(
+                "selectedQuizTopic",
+                topic
+            );
+
+
+            window.location.href =
+                "quiz.html";
+
+        }
+
+
+        /* =========================
+           INITIAL LOAD
+        ========================= */
+
+        createSubjectButtons();
+
+    </script>
+
+
+</body>
+
+</html>

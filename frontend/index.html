@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudyPulse - Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f8fc;
+            color: #172033;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .dashboard-nav {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            border-bottom: 1px solid #dbe5ef;
+            padding: 15px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(30, 70, 100, 0.04);
+        }
+
+        .dashboard-brand {
+            font-size: 25px;
+            font-weight: 800;
+            color: #1769aa;
+            letter-spacing: -0.5px;
+        }
+
+        .dashboard-nav-links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .dashboard-nav-links a {
+            color: #43556b;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .dashboard-nav-links a:hover {
+            color: #1769aa;
+        }
+
+        #logoutBtn {
+            border: 1px solid #c5dfef;
+            background: #e7f3fc;
+            color: #1769aa;
+            padding: 9px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #logoutBtn:hover {
+            background: #1769aa;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .dashboard-page {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 0 70px;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .dashboard-hero {
+            background: linear-gradient(135deg, #e7f4ff 0%, #f8fbff 100%);
+            border: 1px solid #cfe6f8;
+            border-radius: 22px;
+            padding: 38px 40px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+            box-shadow: 0 8px 25px rgba(32, 91, 135, 0.06);
+        }
+
+        .dashboard-hero h1 {
+            margin: 0 0 10px;
+            font-size: 34px;
+            line-height: 1.2;
+            color: #123b5d;
+            letter-spacing: -0.7px;
+        }
+
+        .dashboard-hero p {
+            margin: 0;
+            max-width: 650px;
+            color: #61748a;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        #startLearningBtn {
+            border: none;
+            background: #1976b9;
+            color: white;
+            padding: 14px 22px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.2s;
+            box-shadow: 0 5px 14px rgba(25, 118, 185, 0.18);
+        }
+
+        #startLearningBtn:hover {
+            background: #125b91;
+            transform: translateY(-2px);
+        }
+
+        #startLearningBtn:active,
+        #saveGoalBtn:active,
+        #addSubjectBtn:active,
+        #saveSessionBtn:active {
+            transform: translateY(1px);
+        }
+
+        /* =========================
+           STAT CARDS
+        ========================= */
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .dashboard-stat {
+            background: #ffffff;
+            border: 1px solid #dce7f0;
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 0;
+            box-shadow: 0 5px 18px rgba(30, 70, 100, 0.05);
+            transition: 0.2s;
+        }
+
+        .dashboard-stat:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(30, 70, 100, 0.08);
+            border-color: #c8dce9;
+        }
+
+        .dashboard-stat h3 {
+            margin: 0 0 11px;
+            font-size: 13px;
+            line-height: 1.4;
+            color: #6a7d90;
+            font-weight: 700;
+        }
+
+        .dashboard-stat p {
+            margin: 0;
+            font-size: 27px;
+            font-weight: 800;
+            color: #1769aa;
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        .dashboard-section {
+            background: #ffffff;
+            border: 1px solid #dce7f0;
+            border-radius: 18px;
+            padding: 27px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 18px rgba(30, 70, 100, 0.045);
+        }
+
+        .dashboard-section h2 {
+            margin: 0 0 7px;
+            color: #173b5c;
+            font-size: 22px;
+            line-height: 1.3;
+        }
+
+        .dashboard-section > p {
+            color: #718096;
+            margin: 0;
+            line-height: 1.55;
+            font-size: 14px;
+        }
+
+        /* =========================
+           GOALS
+        ========================= */
+
+        .goal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .goal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .goal-form label {
+            font-weight: 700;
+            color: #42566b;
+            font-size: 14px;
+        }
+
+        .goal-form input,
+        .goal-form select {
+            width: 100%;
+            padding: 12px 13px;
+            border-radius: 9px;
+            border: 1px solid #cbd8e5;
+            background: #ffffff;
+            font-size: 14px;
+            color: #26384b;
+            transition: 0.2s;
+        }
+
+        .goal-form input:focus,
+        .goal-form select:focus {
+            outline: none;
+            border-color: #4a9bd1;
+            box-shadow: 0 0 0 3px rgba(74, 155, 209, 0.12);
+        }
+
+        #saveGoalBtn {
+            background: #1976b9;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 9px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 14px;
+            transition: 0.2s;
+        }
+
+        #saveGoalBtn:hover {
+            background: #125b91;
+        }
+
+        .dashboard-mini {
+            background: #f5f9fd;
+            border: 1px solid #e1ebf3;
+            border-radius: 13px;
+            padding: 17px;
+            margin-top: 18px;
+        }
+
+        .dashboard-mini p {
+            margin: 7px 0;
+            color: #52667b;
+            line-height: 1.5;
+        }
+
+        .dashboard-mini strong {
+            color: #173b5c;
+        }
+
+        /* =========================
+           WEEKLY STATISTICS
+        ========================= */
+
+        .weekly-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 13px;
+            margin-top: 20px;
+        }
+
+        .weekly-grid .dashboard-mini {
+            margin-top: 0;
+        }
+
+        .weekly-grid .dashboard-mini p {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .weekly-grid .dashboard-mini strong {
+            font-size: 19px;
+        }
+
+        /* =========================
+           WEEKLY CHART
+        ========================= */
+
+        #weeklyChart {
+            margin-top: 25px;
+            width: 100%;
+        }
+
+        #weeklyChart .chart-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 13px;
+            width: 100%;
+        }
+
+        #weeklyChart .chart-day {
+            width: 45px;
+            font-weight: bold;
+            color: #52667b;
+            flex-shrink: 0;
+            font-size: 13px;
+        }
+
+        #weeklyChart .chart-bar-container {
+            flex: 1;
+            height: 21px;
+            background: #e8eef4;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        #weeklyChart .chart-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4b9bd3, #1976b9);
+            border-radius: 12px;
+            transition: width 0.4s ease;
+        }
+
+        #weeklyChart .chart-hours {
+            width: 40px;
+            font-weight: bold;
+            color: #31516c;
+            flex-shrink: 0;
+            font-size: 13px;
+        }
+
+        /* =========================
+           ACHIEVEMENTS
+        ========================= */
+
+        #achievements {
+            display: grid;
+            gap: 10px;
+            margin-top: 19px;
+        }
+
+        .achievement {
+            padding: 14px 17px;
+            border-radius: 11px;
+            font-weight: bold;
+            background: #f2f6fa;
+            border: 1px solid #dce7ef;
+            color: #506276;
+            transition: 0.2s;
+        }
+
+        .achievement.locked {
+            opacity: 0.5;
+        }
+
+        .achievement.unlocked {
+            opacity: 1;
+            background: #ecf8f2;
+            border: 2px solid #43a879;
+            color: #256344;
+        }
+
+        /* =========================
+           REVISION / ATTENTION
+        ========================= */
+
+        #revisionReminder {
+            background: #f7fbff;
+            border-left: 4px solid #4b9bd3;
+            padding: 14px 16px;
+            margin-top: 18px;
+            border-radius: 8px;
+            color: #52667b;
+            line-height: 1.55;
+        }
+
+        #attentionTopics,
+        #smartRevision {
+            display: grid;
+            gap: 11px;
+            margin-top: 18px;
+        }
+
+        #attentionTopics > div,
+        #smartRevision > div {
+            background: #f7fafc;
+            border: 1px solid #dce7ef;
+            border-radius: 11px;
+            padding: 14px 15px;
+            transition: 0.2s;
+        }
+
+        #attentionTopics > div:hover,
+        #smartRevision > div:hover {
+            border-color: #bfd8e8;
+            background: #f9fcff;
+        }
+
+        /* =========================
+           SUBJECTS
+        ========================= */
+
+        #subjectsContainer {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .subject-card {
+            background: #f9fbfd;
+            border: 1px solid #dce7ef;
+            border-radius: 14px;
+            padding: 19px;
+            transition: 0.2s;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-2px);
+            border-color: #a9cfe9;
+            box-shadow: 0 7px 20px rgba(35, 100, 145, 0.08);
+        }
+
+        .subject-card h3 {
+            margin: 0 0 9px;
+            color: #173b5c;
+            font-size: 18px;
+        }
+
+        .subject-card p {
+            color: #66798c;
+            line-height: 1.5;
+        }
+
+        .subject-card button {
+            border: none;
+            padding: 9px 13px;
+            border-radius: 7px;
+            margin-right: 6px;
+            margin-top: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .subject-card button:first-of-type {
+            background: #e5f2fc;
+            color: #1769aa;
+        }
+
+        .subject-card button:first-of-type:hover {
+            background: #d4eafa;
+        }
+
+        .subject-card button:last-of-type {
+            background: #fdecec;
+            color: #c44b4b;
+        }
+
+        .subject-card button:last-of-type:hover {
+            background: #fbdada;
+        }
+
+        /* =========================
+           SUBJECT INPUT
+        ========================= */
+
+        .subject-input-row {
+            display: grid;
+            grid-template-columns: 1fr 180px auto;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .subject-input-row input {
+            min-width: 0;
+            padding: 12px 13px;
+            border-radius: 9px;
+            border: 1px solid #cbd8e5;
+            background: white;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .subject-input-row input:focus {
+            outline: none;
+            border-color: #4a9bd1;
+            box-shadow: 0 0 0 3px rgba(74, 155, 209, 0.12);
+        }
+
+        #addSubjectBtn {
+            background: #1976b9;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 9px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+
+        #addSubjectBtn:hover {
+            background: #125b91;
+        }
+
+        /* =========================
+           STUDY SESSIONS
+        ========================= */
+
+        #toggleSessionBtn {
+            background: #e7f3fc;
+            color: #1769aa;
+            border: 1px solid #c5dfef;
+            padding: 11px 16px;
+            border-radius: 9px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: 0.2s;
+        }
+
+        #toggleSessionBtn:hover {
+            background: #d9edf9;
+        }
+
+        #studySessionForm {
+            margin-top: 18px;
+            padding: 18px;
+            background: #f7fafc;
+            border: 1px solid #dce7ef;
+            border-radius: 13px;
+        }
+
+        #studySessionForm select,
+        #studySessionForm input {
+            padding: 12px;
+            border-radius: 9px;
+            border: 1px solid #cbd8e5;
+            background: white;
+            font-size: 14px;
+            margin: 5px;
+        }
+
+        #studySessionForm select:focus,
+        #studySessionForm input:focus {
+            outline: none;
+            border-color: #4a9bd1;
+            box-shadow: 0 0 0 3px rgba(74, 155, 209, 0.12);
+        }
+
+        #saveSessionBtn {
+            padding: 12px 17px;
+            border-radius: 9px;
+            border: none;
+            background: #1976b9;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+            transition: 0.2s;
+        }
+
+        #saveSessionBtn:hover {
+            background: #125b91;
+        }
+
+        #studyHistory {
+            margin-top: 20px;
+            display: grid;
+            gap: 10px;
+        }
+
+        #studyHistory > div {
+            background: #f8fafc;
+            border: 1px solid #dce7ef;
+            border-radius: 10px;
+            padding: 14px;
+        }
+
+        /* =========================
+           PRIORITY BADGES
+        ========================= */
+
+        .priority-high {
+            color: #c0392b;
+            background: #fff0ef;
+            border: 1px solid #f4c7c3;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .priority-medium {
+            color: #a36b00;
+            background: #fff8e6;
+            border: 1px solid #f2d58a;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .priority-low {
+            color: #26734d;
+            background: #ecf8f2;
+            border: 1px solid #b8dfca;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           RESPONSIVE - TABLET
+        ========================= */
+
+        @media (max-width: 1050px) {
+
+            .dashboard-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .weekly-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 800px) {
+
+            .dashboard-page {
+                width: 92%;
+            }
+
+            .dashboard-hero {
+                padding: 30px;
+            }
+
+            .dashboard-hero h1 {
+                font-size: 29px;
+            }
+
+            .subject-input-row {
+                grid-template-columns: 1fr 150px;
+            }
+
+            #addSubjectBtn {
+                grid-column: 1 / -1;
+            }
+
+            #subjectsContainer {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* =========================
+           RESPONSIVE - MOBILE
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .dashboard-nav {
+                padding: 12px 4%;
+                gap: 10px;
+            }
+
+            .dashboard-brand {
+                font-size: 20px;
+            }
+
+            .dashboard-nav-links {
+                gap: 5px;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+
+            .dashboard-nav-links a {
+                font-size: 11px;
+            }
+
+            #logoutBtn {
+                padding: 7px 9px;
+                font-size: 11px;
+            }
+
+            .dashboard-page {
+                width: 92%;
+                padding: 20px 0 45px;
+            }
+
+            .dashboard-hero {
+                padding: 24px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 18px;
+                border-radius: 17px;
+                margin-bottom: 18px;
+            }
+
+            .dashboard-hero h1 {
+                font-size: 24px;
+                line-height: 1.3;
+            }
+
+            .dashboard-hero p {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            #startLearningBtn {
+                width: 100%;
+                padding: 13px;
+            }
+
+            .dashboard-stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 9px;
+                margin-bottom: 18px;
+            }
+
+            .dashboard-stat {
+                padding: 16px 13px;
+                border-radius: 12px;
+            }
+
+            .dashboard-stat h3 {
+                font-size: 11px;
+                margin-bottom: 7px;
+            }
+
+            .dashboard-stat p {
+                font-size: 21px;
+            }
+
+            .dashboard-section {
+                padding: 20px 15px;
+                border-radius: 15px;
+                margin-bottom: 16px;
+            }
+
+            .dashboard-section h2 {
+                font-size: 19px;
+            }
+
+            .dashboard-section > p {
+                font-size: 13px;
+                line-height: 1.55;
+            }
+
+            .goal-grid,
+            .weekly-grid {
+                grid-template-columns: 1fr;
+                gap: 9px;
+            }
+
+            .dashboard-mini {
+                padding: 14px;
+                margin-top: 12px;
+            }
+
+            .subject-input-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .subject-input-row input,
+            #addSubjectBtn {
+                width: 100%;
+            }
+
+            .subject-card {
+                padding: 16px;
+            }
+
+            .subject-card h3 {
+                font-size: 17px;
+            }
+
+            .subject-card button {
+                margin-top: 5px;
+            }
+
+            #studySessionForm {
+                padding: 13px;
+            }
+
+            #studySessionForm select,
+            #studySessionForm input,
+            #saveSessionBtn {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            #weeklyChart .chart-row {
+                gap: 7px;
+                margin-bottom: 11px;
+            }
+
+            #weeklyChart .chart-day {
+                width: 32px;
+                font-size: 11px;
+            }
+
+            #weeklyChart .chart-hours {
+                width: 32px;
+                font-size: 11px;
+            }
+
+            #weeklyChart .chart-bar-container {
+                height: 19px;
+            }
+        }
+
+        /* =========================
+           RESPONSIVE - SMALL PHONES
+        ========================= */
+
+        @media (max-width: 420px) {
+
+            .dashboard-nav {
+                align-items: flex-start;
+            }
+
+            .dashboard-brand {
+                font-size: 18px;
+            }
+
+            .dashboard-nav-links {
+                gap: 4px;
+            }
+
+            .dashboard-nav-links a,
+            #logoutBtn {
+                font-size: 10px;
+                padding: 6px 7px;
+            }
+
+            .dashboard-page {
+                width: 94%;
+            }
+
+            .dashboard-hero {
+                padding: 21px 17px;
+            }
+
+            .dashboard-hero h1 {
+                font-size: 22px;
+            }
+
+            .dashboard-hero p {
+                font-size: 13px;
+            }
+
+            .dashboard-stats {
+                gap: 8px;
+            }
+
+            .dashboard-stat {
+                padding: 14px 11px;
+            }
+
+            .dashboard-stat p {
+                font-size: 20px;
+            }
+
+            .dashboard-section {
+                padding: 18px 13px;
+            }
+
+            .dashboard-section h2 {
+                font-size: 18px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav class="dashboard-nav">
+
+        <div class="dashboard-brand">
+            StudyPulse
+        </div>
+
+        <div class="dashboard-nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="profile.html">Profile</a>
+            <a href="topics.html">Learn</a>
+
+            <button id="logoutBtn" type="button">
+                Logout
+            </button>
+        </div>
+
+    </nav>
+
+
+    <main class="dashboard-page">
+
+        <!-- =========================
+             HERO
+        ========================= -->
+
+        <section class="dashboard-hero">
+
+            <div>
+                <h1>
+                    Welcome back, <span id="studentName">Student</span> 👋
+                </h1>
+
+                <p>
+                    Track your preparation, improve your weak areas,
+                    and stay ready for your exams.
+                </p>
+            </div>
+
+            <button id="startLearningBtn">
+                Start Learning →
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             DASHBOARD STATS
+        ========================= -->
+
+        <section class="dashboard-stats">
+
+            <div class="dashboard-stat">
+                <h3>Total Subjects</h3>
+                <p id="totalSubjects">0</p>
+            </div>
+
+            <div class="dashboard-stat">
+                <h3>Average Readiness</h3>
+                <p id="averageReadiness">0%</p>
+            </div>
+
+            <div class="dashboard-stat">
+                <h3>Need Revision</h3>
+                <p id="needRevision">0</p>
+            </div>
+
+            <div class="dashboard-stat">
+                <h3>Total Study Hours</h3>
+                <p id="totalStudyTime">0</p>
+            </div>
+
+            <div class="dashboard-stat">
+                <h3>Study Streak 🔥</h3>
+                <p id="studyStreak">0</p>
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             STUDY GOALS
+        ========================= -->
+
+        <section class="dashboard-section">
+
+            <h2>Study Goals 🎯</h2>
+
+            <p>
+                Set your target readiness and exam date.
+            </p>
+
+            <div class="goal-grid">
+
+                <div class="goal-form">
+
+                    <label for="targetReadiness">
+                        Target Readiness (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="targetReadiness"
+                        min="1"
+                        max="100"
+                        placeholder="Example: 80"
+                    >
+
+                </div>
+
+
+                <div class="goal-form">
+
+                    <label for="examDate">
+                        Exam Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="examDate"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="goal-form">
+
+                <button id="saveGoalBtn">
+                    Save Goal
+                </button>
+
+            </div>
+
+
+            <div class="dashboard-mini">
+
+                <p>
+                    Current Readiness:
+                    <strong id="goalCurrentReadiness">0%</strong>
+                </p>
+
+                <p>
+                    Progress:
+                    <strong id="goalProgress">0%</strong>
+                </p>
+
+                <p>
+                    Exam Countdown:
+                    <strong id="examCountdown">Not set</strong>
+                </p>
+
+                <p>
+                    Goal Status:
+                    <strong id="goalStatus">No goal set</strong>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             WEEKLY STATISTICS
+        ========================= -->
+
+        <section class="dashboard-section">
+
+            <h2>Weekly Study Statistics 📊</h2>
+
+            <p>
+                See how consistently you studied during the last 7 days.
+            </p>
+
+
+            <div class="weekly-grid">
+
+                <div class="dashboard-mini">
+
+                    <p>Study Hours</p>
+
+                    <strong id="weeklyStudyHours">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="dashboard-mini">
+
+                    <p>Sessions</p>
+
+                    <strong id="weeklySessions">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="dashboard-mini">
+
+                    <p>Average Session</p>
+
+                    <strong id="weeklyAverage">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="dashboard-mini">
+
+                    <p>Most Studied Subject</p>
+
+                    <strong id="mostStudiedSubject">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div id="weeklyChart"></div>
+
+        </section>
+
+
+        <!-- =========================
+             ACHIEVEMENTS
+        ========================= -->
+
+        <section class="dashboard-section">
+
+            <h2>Achievements 🏆</h2>
+
+            <p>
+                Milestones you have unlocked.
+            </p>
+
+            <div id="achievements">
+
+                <div class="achievement locked">
+                    🥉 First Study Session
+                </div>
+
+                <div class="achievement locked">
+                    🔥 3-Day Streak
+                </div>
+
+                <div class="achievement locked">
+                    📚 10 Hours Studied
+                </div>
+
+                <div class="achievement locked">
+                    🎯 Goal Achiever
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             REVISION REMINDER
+        ========================= -->
+
+        <section class="dashboard-section">
+
+            <h2>Revision Reminder 🔔</h2>
+
+            <p id="revisionReminder">
+                Checking your revision status...
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             ATTENTION TOPICS
+        ========================= -->
+
+        <section class="dashboard-section">
+
+            <h2>Attention Topics ⚠️</h2>
+
+            <p>
+                Subjects with readiness below 50%.
+            </p>
+
+            <div id="attentionTopics"></div>
+
+        </section>
+
+
+        <!-- =========================
+             SMART REVISION
+        ========================= -->
+
+        <section class="dashboard-section">
+
+            <h2>Smart Revision 🧠</h2>
+
+            <p>
+                Focus on your weakest subjects first.
+            </p>
+
+            <div id="smartRevision"></div>
+
+        </section>
+
+
+        <!-- =========================
+             MY SUBJECTS
+        ========================= -->
+
+        <section
+            class="dashboard-section"
+            id="subjectsSection"
+        >
+
+            <h2>My Subjects 📚</h2>
+
+            <p>
+                Manage your subjects and update your readiness.
+            </p>
+
+
+            <div class="subject-input-row">
+
+                <input
+                    type="text"
+                    id="subjectName"
+                    placeholder="Subject name"
+                >
+
+                <input
+                    type="number"
+                    id="subjectReadiness"
+                    min="0"
+                    max="100"
+                    placeholder="Readiness %"
+                >
+
+                <button id="addSubjectBtn">
+                    Add Subject
+                </button>
+
+            </div>
+
+
+            <div id="subjectsContainer"></div>
+
+        </section>
+
+
+        <!-- =========================
+             STUDY SESSIONS
+        ========================= -->
+
+        <section class="dashboard-section">
+
+            <h2>Study Sessions ⏱️</h2>
+
+            <p>
+                Record the time you spend studying.
+            </p>
+
+
+            <button id="toggleSessionBtn">
+                + Add Study Session
+            </button>
+
+
+            <div
+                id="studySessionForm"
+                style="display: none;"
+            >
+
+                <select id="sessionSubject">
+
+                    <option value="">
+                        Select Subject
+                    </option>
+
+                </select>
+
+
+                <input
+                    type="number"
+                    id="sessionHours"
+                    min="0.1"
+                    step="0.1"
+                    placeholder="Hours studied"
+                >
+
+
+                <input
+                    type="date"
+                    id="sessionDate"
+                >
+
+
+                <button id="saveSessionBtn">
+                    Save Session
+                </button>
+
+            </div>
+
+
+            <div id="studyHistory"></div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+    <script>
+
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        if (logoutBtn) {
+
+            logoutBtn.addEventListener("click", function () {
+
+                localStorage.removeItem("isLoggedIn");
+                localStorage.removeItem("studentEmail");
+
+                window.location.href = "login.html";
+
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>
