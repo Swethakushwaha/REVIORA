@@ -10,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>StudyPulse - Learning Hub</title>
+    <title>REVIORA - Learning Hub</title>
 
 
     <style>
@@ -37,11 +37,6 @@
         a {
             text-decoration: none;
         }
-
-
-        /* =========================
-           NAVIGATION
-        ========================= */
 
         .learning-nav {
             position: sticky;
@@ -106,11 +101,6 @@
             transform: translateX(-2px);
         }
 
-
-        /* =========================
-           PAGE
-        ========================= */
-
         .topics-page {
             width: 90%;
 
@@ -120,11 +110,6 @@
 
             padding: 32px 0 60px;
         }
-
-
-        /* =========================
-           HERO
-        ========================= */
 
         .learning-hero {
             position: relative;
@@ -203,11 +188,6 @@
             line-height: 1.6;
         }
 
-
-        /* =========================
-           SECTIONS
-        ========================= */
-
         .learning-section {
             background: #ffffff;
 
@@ -249,11 +229,6 @@
 
             line-height: 1.5;
         }
-
-
-        /* =========================
-           SUBJECT BUTTONS
-        ========================= */
 
         #subjectButtons {
             display: grid;
@@ -330,11 +305,6 @@
 
             font-size: 13px;
         }
-
-
-        /* =========================
-           TOPIC AREA
-        ========================= */
 
         #topicsContainer {
             margin-top: 22px;
@@ -435,11 +405,6 @@
             line-height: 1.4;
         }
 
-
-        /* =========================
-           QUIZ BUTTON
-        ========================= */
-
         .quiz-button {
             flex-shrink: 0;
 
@@ -487,11 +452,6 @@
             transform: translateY(0);
         }
 
-
-        /* =========================
-           EMPTY STATE
-        ========================= */
-
         .empty-topics {
             padding: 27px 20px;
 
@@ -509,11 +469,6 @@
 
             line-height: 1.5;
         }
-
-
-        /* =========================
-           TABLET
-        ========================= */
 
         @media (max-width: 800px) {
 
@@ -539,11 +494,6 @@
             }
 
         }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
 
         @media (max-width: 650px) {
 
@@ -657,11 +607,6 @@
 
         }
 
-
-        /* =========================
-           SMALL MOBILE
-        ========================= */
-
         @media (max-width: 450px) {
 
             .learning-nav {
@@ -722,15 +667,10 @@
 
 <body>
 
-
-    <!-- =========================
-         NAVIGATION
-    ========================= -->
-
     <nav class="learning-nav">
 
         <div class="learning-brand">
-            StudyPulse
+            REVIORA
         </div>
 
 
@@ -743,10 +683,6 @@
 
     <main class="topics-page">
 
-
-        <!-- =========================
-             HERO
-        ========================= -->
 
         <section class="learning-hero">
 
@@ -761,11 +697,6 @@
             </p>
 
         </section>
-
-
-        <!-- =========================
-             SUBJECT SELECTION
-        ========================= -->
 
         <section class="learning-section">
 
@@ -782,11 +713,6 @@
             <div id="subjectButtons"></div>
 
         </section>
-
-
-        <!-- =========================
-             TOPICS
-        ========================= -->
 
         <section
             class="learning-section"
@@ -819,10 +745,6 @@
 
     <script>
 
-
-        /* =========================
-           SUBJECT TOPICS
-        ========================= */
 
         const subjectTopics = {
 
@@ -917,11 +839,6 @@
 
         };
 
-
-        /* =========================
-           DOM REFERENCES
-        ========================= */
-
         const subjectButtons =
             document.getElementById(
                 "subjectButtons"
@@ -950,11 +867,6 @@
             document.getElementById(
                 "topicsSection"
             );
-
-
-        /* =========================
-           CREATE SUBJECT BUTTONS
-        ========================= */
 
         function createSubjectButtons() {
 
@@ -1003,11 +915,6 @@
                 });
 
         }
-
-
-        /* =========================
-           SHOW TOPICS
-        ========================= */
 
         function showTopics(subject) {
 
@@ -1089,11 +996,6 @@
 
         }
 
-
-        /* =========================
-           START QUIZ
-        ========================= */
-
         function startQuiz(
             subject,
             topic
@@ -1115,11 +1017,6 @@
                 "quiz.html";
 
         }
-
-
-        /* =========================
-           INITIAL LOAD
-        ========================= */
 
         createSubjectButtons();
 

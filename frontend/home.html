@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>StudyPulse | Study Smarter</title>
+    <title>REVIORA | Study Smarter</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -15,26 +17,29 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: #f5f9fd;
-            color: #16324f;
+            background: #f7f9fc;
+            color: #1f2937;
+            line-height: 1.6;
         }
-
-        /* NAVBAR */
-
-        .navbar {
-            width: 100%;
+        
+        nav {
+            height: 70px;
             background: white;
-            border-bottom: 1px solid #e2edf5;
-            padding: 18px 7%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
-            font-size: 25px;
+            font-size: 24px;
             font-weight: 800;
-            color: #1769aa;
+            color: #4f46e5;
+            letter-spacing: 1px;
         }
 
         .nav-buttons {
@@ -47,185 +52,192 @@
             padding: 9px 18px;
             border-radius: 8px;
             font-size: 14px;
-            font-weight: 700;
+            font-weight: 600;
+            transition: 0.2s;
         }
 
         .login-btn {
-            color: #1769aa;
-            border: 1px solid #bcd9ed;
-            background: #eef7fd;
+            color: #4f46e5;
+            border: 1px solid #4f46e5;
+            background: white;
+        }
+
+        .login-btn:hover {
+            background: #eef2ff;
         }
 
         .signup-btn {
             color: white;
-            background: #1769aa;
+            background: #4f46e5;
         }
 
-        .nav-buttons a:hover {
-            transform: translateY(-1px);
+        .signup-btn:hover {
+            background: #4338ca;
         }
-
-        /* HERO */
 
         .hero {
-            min-height: 590px;
-            padding: 80px 7%;
-            display: flex;
+            max-width: 1150px;
+            margin: auto;
+            padding: 80px 30px 70px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 55px;
             align-items: center;
-            justify-content: space-between;
-            gap: 50px;
         }
 
-        .hero-content {
-            max-width: 590px;
-        }
-
-        .tag {
+        .hero-tag {
             display: inline-block;
-            background: #e4f2fc;
-            color: #1769aa;
-            padding: 8px 14px;
+            color: #4f46e5;
+            background: #eef2ff;
+            padding: 7px 13px;
             border-radius: 20px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
-            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            margin-bottom: 18px;
         }
 
         .hero h1 {
-            font-size: 54px;
+            font-size: 52px;
             line-height: 1.1;
+            color: #111827;
             margin-bottom: 20px;
-            color: #123b5d;
         }
 
         .hero h1 span {
-            color: #1769aa;
+            color: #4f46e5;
         }
 
-        .hero p {
-            font-size: 18px;
-            line-height: 1.7;
-            color: #60758a;
+        .hero-text {
+            font-size: 17px;
+            color: #6b7280;
+            max-width: 540px;
             margin-bottom: 30px;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 14px;
-        }
-
-        .primary-btn,
-        .secondary-btn {
+        .hero-button {
+            display: inline-block;
             text-decoration: none;
-            padding: 14px 24px;
+            background: #4f46e5;
+            color: white;
+            padding: 13px 24px;
             border-radius: 9px;
             font-weight: 700;
-            font-size: 15px;
-            display: inline-block;
+            transition: 0.2s;
         }
 
-        .primary-btn {
-            background: #1769aa;
-            color: white;
-            box-shadow: 0 8px 20px rgba(23, 105, 170, 0.2);
-        }
-
-        .secondary-btn {
-            background: white;
-            color: #1769aa;
-            border: 1px solid #c5dfef;
-        }
-
-        .primary-btn:hover,
-        .secondary-btn:hover {
+        .hero-button:hover {
+            background: #4338ca;
             transform: translateY(-2px);
         }
 
-        /* DASHBOARD PREVIEW */
-
-        .preview {
-            width: 430px;
+        .dashboard-preview {
             background: white;
-            border: 1px solid #dceaf4;
-            border-radius: 20px;
-            padding: 22px;
-            box-shadow: 0 20px 50px rgba(35, 83, 120, 0.12);
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
         }
 
         .preview-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .preview-header strong {
-            font-size: 18px;
+            font-size: 17px;
         }
 
-        .preview-header span {
-            font-size: 12px;
-            color: #1769aa;
-            background: #e9f5fd;
-            padding: 6px 9px;
-            border-radius: 6px;
+        .preview-dot {
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
         }
 
-        .stats {
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
         }
 
         .stat-card {
-            padding: 18px;
-            background: #f5faff;
-            border: 1px solid #e1edf5;
+            padding: 17px;
             border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #eef2f7;
         }
 
-        .stat-card small {
-            color: #72869a;
+        .stat-card p {
+            color: #6b7280;
             font-size: 12px;
+            margin-bottom: 4px;
         }
 
         .stat-card h3 {
-            margin-top: 7px;
             font-size: 24px;
-            color: #1769aa;
+            color: #111827;
         }
 
-        .progress-box {
-            margin-top: 15px;
-            padding: 18px;
-            border-radius: 12px;
-            background: #f8fbfe;
-            border: 1px solid #e1edf5;
+        .progress-section {
+            margin-top: 20px;
         }
 
-        .progress-top {
+        .progress-title {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .progress-bar {
             height: 9px;
-            background: #e5edf3;
-            border-radius: 10px;
+            background: #e5e7eb;
+            border-radius: 20px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
             width: 72%;
-            background: #1769aa;
-            border-radius: 10px;
+            background: #4f46e5;
+            border-radius: 20px;
         }
 
-        /* FEATURES */
+        .priority-box {
+            margin-top: 20px;
+            padding: 18px;
+            background: #eef2ff;
+            border-radius: 13px;
+            border: 1px solid #e0e7ff;
+        }
+
+        .priority-box h4 {
+            color: #3730a3;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .priority-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 13px;
+        }
+
+        .priority-item span:last-child {
+            font-weight: 700;
+            color: #4f46e5;
+        }
+
+        .priority-note {
+            margin-top: 8px;
+            font-size: 11px;
+            color: #6366f1;
+        }
 
         .features-section {
             background: white;
@@ -240,361 +252,478 @@
 
         .section-heading h2 {
             font-size: 34px;
-            color: #123b5d;
-            margin-bottom: 12px;
+            color: #111827;
+            margin-bottom: 10px;
         }
 
         .section-heading p {
-            color: #6d8193;
-            line-height: 1.6;
+            color: #6b7280;
         }
 
         .features {
-            margin-top: 40px;
+            max-width: 1100px;
+            margin: 40px auto 0;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
+            gap: 20px;
         }
 
         .feature-card {
             padding: 25px;
-            border: 1px solid #e0ebf3;
+            border: 1px solid #e5e7eb;
             border-radius: 14px;
-            background: #fbfdff;
+            background: white;
             transition: 0.2s;
         }
 
         .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 25px rgba(35, 83, 120, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+            border-color: #c7d2fe;
         }
 
         .feature-icon {
-            font-size: 28px;
-            margin-bottom: 15px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef2ff;
+            border-radius: 10px;
+            font-size: 21px;
+            margin-bottom: 17px;
         }
 
         .feature-card h3 {
             font-size: 17px;
-            margin-bottom: 9px;
-            color: #173f5f;
+            margin-bottom: 8px;
+            color: #111827;
         }
 
         .feature-card p {
-            color: #718496;
+            color: #6b7280;
             font-size: 14px;
-            line-height: 1.6;
         }
-
-        /* CTA */
 
         .cta {
-            padding: 70px 7%;
-            text-align: center;
-        }
-
-        .cta-box {
-            max-width: 850px;
-            margin: auto;
-            background: #1769aa;
-            color: white;
+            max-width: 1050px;
+            margin: 70px auto;
             padding: 55px 30px;
+            text-align: center;
+            background: #4f46e5;
             border-radius: 20px;
+            color: white;
         }
 
-        .cta-box h2 {
+        .cta h2 {
             font-size: 34px;
             margin-bottom: 12px;
         }
 
-        .cta-box p {
-            opacity: 0.9;
-            margin-bottom: 25px;
-            line-height: 1.6;
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 25px;
+            color: #e0e7ff;
         }
 
-        .cta-box a {
+        .cta a {
             display: inline-block;
-            text-decoration: none;
             background: white;
-            color: #1769aa;
-            padding: 13px 25px;
+            color: #4f46e5;
+            text-decoration: none;
+            padding: 12px 23px;
             border-radius: 8px;
             font-weight: 700;
+            transition: 0.2s;
         }
 
-        /* FOOTER */
+        .cta a:hover {
+            background: #eef2ff;
+        }
 
         footer {
             background: white;
-            border-top: 1px solid #e2edf5;
-            padding: 25px 7%;
+            border-top: 1px solid #e5e7eb;
             text-align: center;
-            color: #718496;
+            padding: 25px;
+            color: #6b7280;
             font-size: 13px;
         }
 
-        /* MOBILE */
+        @media (max-width: 950px) {
 
-        @media (max-width: 850px) {
             .hero {
-                flex-direction: column;
+                grid-template-columns: 1fr;
                 text-align: center;
-                padding-top: 55px;
             }
 
-            .hero-buttons {
-                justify-content: center;
+            .hero-text {
+                margin-left: auto;
+                margin-right: auto;
             }
 
-            .preview {
+            .dashboard-preview {
+                max-width: 600px;
                 width: 100%;
-                max-width: 500px;
+                margin: auto;
             }
 
             .features {
                 grid-template-columns: repeat(2, 1fr);
             }
+
         }
 
-        @media (max-width: 550px) {
-            .navbar {
-                padding: 15px 5%;
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 0 20px;
             }
 
             .logo {
                 font-size: 21px;
             }
 
+            .nav-buttons {
+                gap: 6px;
+            }
+
             .nav-buttons a {
-                padding: 8px 11px;
+                padding: 8px 12px;
                 font-size: 12px;
             }
 
             .hero {
-                padding: 50px 5%;
-                min-height: auto;
+                padding: 55px 20px;
+                gap: 35px;
             }
 
             .hero h1 {
-                font-size: 39px;
+                font-size: 40px;
             }
 
-            .hero p {
+            .hero-text {
                 font-size: 15px;
             }
 
-            .hero-buttons {
-                flex-direction: column;
+            .dashboard-preview {
+                padding: 18px;
             }
 
-            .primary-btn,
-            .secondary-btn {
-                width: 100%;
+            .stats-grid {
+                gap: 8px;
             }
 
-            .preview {
-                padding: 16px;
+            .stat-card {
+                padding: 13px;
             }
 
-            .features-section,
-            .cta {
-                padding: 50px 5%;
+            .stat-card h3 {
+                font-size: 20px;
+            }
+
+            .features-section {
+                padding: 55px 20px;
+            }
+
+            .section-heading h2 {
+                font-size: 28px;
             }
 
             .features {
                 grid-template-columns: 1fr;
+                margin-top: 30px;
             }
 
-            .section-heading h2,
-            .cta-box h2 {
+            .cta {
+                margin: 50px 20px;
+                padding: 40px 20px;
+            }
+
+            .cta h2 {
                 font-size: 28px;
             }
+
         }
+
+        @media (max-width: 400px) {
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .nav-buttons a {
+                padding: 7px 9px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .priority-item {
+                font-size: 12px;
+            }
+
+        }
+
     </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
+    <nav>
 
-    <nav class="navbar">
-        <div class="logo">StudyPulse</div>
+        <div class="logo">
+            REVIORA
+        </div>
 
         <div class="nav-buttons">
-            <a href="login.html" class="login-btn">Login</a>
-            <a href="signup.html" class="signup-btn">Sign Up</a>
+
+            <a href="login.html" class="login-btn">
+                Login
+            </a>
+
+            <a href="signup.html" class="signup-btn">
+                Sign Up
+            </a>
+
         </div>
+
     </nav>
 
+    <main>
 
-    <!-- HERO SECTION -->
+        <section class="hero">
 
-    <section class="hero">
+            <div class="hero-content">
 
-        <div class="hero-content">
+                <div class="hero-tag">
+                    YOUR PERSONAL EXAM COMPANION
+                </div>
 
-            <div class="tag">YOUR PERSONAL STUDY COMPANION</div>
+                <h1>
+                    Study smarter.
+                    <br>
+                    <span>Know what to study next.</span>
+                </h1>
 
-            <h1>
-                Study smarter.<br>
-                <span>Track your progress.</span>
-            </h1>
+                <p class="hero-text">
+                    REVIORA helps students track subjects, monitor exam
+                    readiness, record study sessions, practice quizzes,
+                    and understand what deserves their attention next.
+                </p>
 
-            <p>
-                StudyPulse helps students track their subjects,
-                monitor exam readiness, manage study sessions,
-                practice quizzes and stay focused on their goals.
-            </p>
-
-            <div class="hero-buttons">
-                <a href="signup.html" class="primary-btn">
-                    Get Started
+                <a href="signup.html" class="hero-button">
+                    Start Learning →
                 </a>
 
-                <a href="login.html" class="secondary-btn">
-                    I already have an account
-                </a>
             </div>
 
-        </div>
+            <div class="dashboard-preview">
+
+                <div class="preview-header">
+
+                    <strong>
+                        REVIORA Dashboard
+                    </strong>
+
+                    <div class="preview-dot"></div>
+
+                </div>
 
 
-        <!-- DASHBOARD PREVIEW -->
+                <div class="stats-grid">
 
-        <div class="preview">
+                    <div class="stat-card">
+                        <p>Subjects</p>
+                        <h3>8</h3>
+                    </div>
 
-            <div class="preview-header">
-                <strong>Study Dashboard</strong>
-                <span>Ready to learn</span>
+                    <div class="stat-card">
+                        <p>Readiness</p>
+                        <h3>72%</h3>
+                    </div>
+
+                    <div class="stat-card">
+                        <p>Study Hours</p>
+                        <h3>18.5</h3>
+                    </div>
+
+                    <div class="stat-card">
+                        <p>Study Streak</p>
+                        <h3>🔥 5</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="progress-section">
+
+                    <div class="progress-title">
+                        <span>Overall Preparation</span>
+                        <span>72%</span>
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Personalized Priority -->
+
+                <div class="priority-box">
+
+                    <h4>
+                        🎯 Today's Priority
+                    </h4>
+
+                    <div class="priority-item">
+                        <span>Python</span>
+                        <span>35%</span>
+                    </div>
+
+                    <div class="priority-item">
+                        <span>JavaScript</span>
+                        <span>41%</span>
+                    </div>
+
+                    <div class="priority-item">
+                        <span>DBMS</span>
+                        <span>52%</span>
+                    </div>
+
+                    <p class="priority-note">
+                        Focus first on the subjects that need the most attention.
+                    </p>
+
+                </div>
+
             </div>
 
-            <div class="stats">
+        </section>
 
-                <div class="stat-card">
-                    <small>Subjects</small>
-                    <h3>8</h3>
-                </div>
+        <section class="features-section">
 
-                <div class="stat-card">
-                    <small>Readiness</small>
-                    <h3>72%</h3>
-                </div>
+            <div class="section-heading">
 
-                <div class="stat-card">
-                    <small>Study Hours</small>
-                    <h3>18.5</h3>
-                </div>
+                <h2>
+                    Everything you need to study better
+                </h2>
 
-                <div class="stat-card">
-                    <small>Streak</small>
-                    <h3>🔥 5</h3>
-                </div>
+                <p>
+                    REVIORA turns your study activity into clear,
+                    useful progress.
+                </p>
 
             </div>
 
-            <div class="progress-box">
 
-                <div class="progress-top">
-                    <span>Overall Preparation</span>
-                    <span>72%</span>
+            <div class="features">
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📊
+                    </div>
+
+                    <h3>
+                        Track Readiness
+                    </h3>
+
+                    <p>
+                        Track how prepared you feel for each subject
+                        and see your overall preparation progress.
+                    </p>
+
                 </div>
 
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🎯
+                    </div>
+
+                    <h3>
+                        Personalized Priority
+                    </h3>
+
+                    <p>
+                        Identify which subjects deserve your attention
+                        instead of guessing what to study next.
+                    </p>
+
                 </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        ⏱️
+                    </div>
+
+                    <h3>
+                        Study Sessions
+                    </h3>
+
+                    <p>
+                        Record your study hours, build consistency,
+                        and keep track of your study history.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🧠
+                    </div>
+
+                    <h3>
+                        Practice & Achievements
+                    </h3>
+
+                    <p>
+                        Test your knowledge with quizzes and unlock
+                        achievements as you make progress.
+                    </p>
+
+                </div>
+
 
             </div>
 
-        </div>
+        </section>
 
-    </section>
+        <section class="cta">
 
-
-    <!-- FEATURES -->
-
-    <section class="features-section">
-
-        <div class="section-heading">
-
-            <h2>Everything you need to study better</h2>
+            <h2>
+                Ready to study smarter?
+            </h2>
 
             <p>
-                Keep your preparation organized and understand
-                exactly where you need to improve.
+                Create your REVIORA account and start turning
+                your study effort into visible progress.
             </p>
 
-        </div>
+            <a href="signup.html">
+                Create Your Account
+            </a>
 
+        </section>
 
-        <div class="features">
-
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>Track Readiness</h3>
-                <p>
-                    Monitor your preparation level for every subject
-                    and identify areas that need attention.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">⏱️</div>
-                <h3>Study Sessions</h3>
-                <p>
-                    Record your study hours and keep track of your
-                    learning history.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🧠</div>
-                <h3>Practice Quizzes</h3>
-                <p>
-                    Test your knowledge and use quiz performance
-                    to improve your readiness.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🏆</div>
-                <h3>Achievements</h3>
-                <p>
-                    Stay motivated by unlocking achievements as
-                    you build your study habits.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CTA -->
-
-    <section class="cta">
-
-        <div class="cta-box">
-
-            <h2>Ready to take control of your studies?</h2>
-
-            <p>
-                Create your StudyPulse account and start tracking
-                your exam preparation today.
-            </p>
-
-            <a href="signup.html">Create Your Account</a>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
+    </main>
 
     <footer>
-        © 2026 StudyPulse · Built for students
+
     </footer>
 
 </body>
+
 </html>
