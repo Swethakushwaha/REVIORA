@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>REVIORA | Study Smarter</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f9fc;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        
+        nav {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #4f46e5;
+            letter-spacing: 1px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .login-btn {
+            color: #4f46e5;
+            border: 1px solid #4f46e5;
+            background: white;
+        }
+
+        .login-btn:hover {
+            background: #eef2ff;
+        }
+
+        .signup-btn {
+            color: white;
+            background: #4f46e5;
+        }
+
+        .signup-btn:hover {
+            background: #4338ca;
+        }
+
+        .hero {
+            max-width: 1150px;
+            margin: auto;
+            padding: 80px 30px 70px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            color: #4f46e5;
+            background: #eef2ff;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            line-height: 1.1;
+            color: #111827;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #4f46e5;
+        }
+
+        .hero-text {
+            font-size: 17px;
+            color: #6b7280;
+            max-width: 540px;
+            margin-bottom: 30px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            text-decoration: none;
+            background: #4f46e5;
+            color: white;
+            padding: 13px 24px;
+            border-radius: 9px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .hero-button:hover {
+            background: #4338ca;
+            transform: translateY(-2px);
+        }
+
+        .dashboard-preview {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .preview-header strong {
+            font-size: 17px;
+        }
+
+        .preview-dot {
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .stat-card {
+            padding: 17px;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #eef2f7;
+        }
+
+        .stat-card p {
+            color: #6b7280;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .stat-card h3 {
+            font-size: 24px;
+            color: #111827;
+        }
+
+        .progress-section {
+            margin-top: 20px;
+        }
+
+        .progress-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 9px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 72%;
+            background: #4f46e5;
+            border-radius: 20px;
+        }
+
+        .priority-box {
+            margin-top: 20px;
+            padding: 18px;
+            background: #eef2ff;
+            border-radius: 13px;
+            border: 1px solid #e0e7ff;
+        }
+
+        .priority-box h4 {
+            color: #3730a3;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .priority-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 13px;
+        }
+
+        .priority-item span:last-child {
+            font-weight: 700;
+            color: #4f46e5;
+        }
+
+        .priority-note {
+            margin-top: 8px;
+            font-size: 11px;
+            color: #6366f1;
+        }
+
+        .features-section {
+            background: white;
+            padding: 70px 7%;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .section-heading h2 {
+            font-size: 34px;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: #6b7280;
+        }
+
+        .features {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            padding: 25px;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            background: white;
+            transition: 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+            border-color: #c7d2fe;
+        }
+
+        .feature-icon {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef2ff;
+            border-radius: 10px;
+            font-size: 21px;
+            margin-bottom: 17px;
+        }
+
+        .feature-card h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+            color: #111827;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .cta {
+            max-width: 1050px;
+            margin: 70px auto;
+            padding: 55px 30px;
+            text-align: center;
+            background: #4f46e5;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 25px;
+            color: #e0e7ff;
+        }
+
+        .cta a {
+            display: inline-block;
+            background: white;
+            color: #4f46e5;
+            text-decoration: none;
+            padding: 12px 23px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .cta a:hover {
+            background: #eef2ff;
+        }
+
+        footer {
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+            padding: 25px;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        @media (max-width: 950px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .dashboard-preview {
+                max-width: 600px;
+                width: 100%;
+                margin: auto;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .nav-buttons {
+                gap: 6px;
+            }
+
+            .nav-buttons a {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 55px 20px;
+                gap: 35px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero-text {
+                font-size: 15px;
+            }
+
+            .dashboard-preview {
+                padding: 18px;
+            }
+
+            .stats-grid {
+                gap: 8px;
+            }
+
+            .stat-card {
+                padding: 13px;
+            }
+
+            .stat-card h3 {
+                font-size: 20px;
+            }
+
+            .features-section {
+                padding: 55px 20px;
+            }
+
+            .section-heading h2 {
+                font-size: 28px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                margin-top: 30px;
+            }
+
+            .cta {
+                margin: 50px 20px;
+                padding: 40px 20px;
+            }
+
+            .cta h2 {
+                font-size: 28px;
+            }
+
+        }
+
+        @media (max-width: 400px) {
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .nav-buttons a {
+                padding: 7px 9px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .priority-item {
+                font-size: 12px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="logo">
+            REVIORA
+        </div>
+
+        <div class="nav-buttons">
+
+            <a href="login.html" class="login-btn">
+                Login
+            </a>
+
+            <a href="signup.html" class="signup-btn">
+                Sign Up
+            </a>
+
+        </div>
+
+    </nav>
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="hero-tag">
+                    YOUR PERSONAL EXAM COMPANION
+                </div>
+
+                <h1>
+                    Study smarter.
+                    <br>
+                    <span>Know what to study next.</span>
+                </h1>
+
+                <p class="hero-text">
+                    REVIORA helps students track subjects, monitor exam
+                    readiness, record study sessions, practice quizzes,
+                    and understand what deserves their attention next.
+                </p>
+
+                <a href="signup.html" class="hero-button">
+                    Start Learning →
+                </a>
+
+            </div>
+
+            <div class="dashboard-preview">
+
+                <div class="preview-header">
+
+                    <strong>
+                        REVIORA Dashboard
+                    </strong>
+
+                    <div class="preview-dot"></div>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <p>Subjects</p>
+                        <h3>8</h3>
+                    </div>
+
+                    <div class="stat-card">
+                        <p>Readiness</p>
+                        <h3>72%</h3>
+                    </div>
+
+                    <div class="stat-card">
+                        <p>Study Hours</p>
+                        <h3>18.5</h3>
+                    </div>
+
+                    <div class="stat-card">
+                        <p>Study Streak</p>
+                        <h3>🔥 5</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="progress-section">
+
+                    <div class="progress-title">
+                        <span>Overall Preparation</span>
+                        <span>72%</span>
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Personalized Priority -->
+
+                <div class="priority-box">
+
+                    <h4>
+                        🎯 Today's Priority
+                    </h4>
+
+                    <div class="priority-item">
+                        <span>Python</span>
+                        <span>35%</span>
+                    </div>
+
+                    <div class="priority-item">
+                        <span>JavaScript</span>
+                        <span>41%</span>
+                    </div>
+
+                    <div class="priority-item">
+                        <span>DBMS</span>
+                        <span>52%</span>
+                    </div>
+
+                    <p class="priority-note">
+                        Focus first on the subjects that need the most attention.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="features-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    Everything you need to study better
+                </h2>
+
+                <p>
+                    REVIORA turns your study activity into clear,
+                    useful progress.
+                </p>
+
+            </div>
+
+
+            <div class="features">
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📊
+                    </div>
+
+                    <h3>
+                        Track Readiness
+                    </h3>
+
+                    <p>
+                        Track how prepared you feel for each subject
+                        and see your overall preparation progress.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🎯
+                    </div>
+
+                    <h3>
+                        Personalized Priority
+                    </h3>
+
+                    <p>
+                        Identify which subjects deserve your attention
+                        instead of guessing what to study next.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        ⏱️
+                    </div>
+
+                    <h3>
+                        Study Sessions
+                    </h3>
+
+                    <p>
+                        Record your study hours, build consistency,
+                        and keep track of your study history.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🧠
+                    </div>
+
+                    <h3>
+                        Practice & Achievements
+                    </h3>
+
+                    <p>
+                        Test your knowledge with quizzes and unlock
+                        achievements as you make progress.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+        <section class="cta">
+
+            <h2>
+                Ready to study smarter?
+            </h2>
+
+            <p>
+                Create your REVIORA account and start turning
+                your study effort into visible progress.
+            </p>
+
+            <a href="signup.html">
+                Create Your Account
+            </a>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+</body>
+
+</html>

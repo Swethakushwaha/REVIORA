@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>REVIORA - Sign Up</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f4f8fc;
+
+            color: #172033;
+
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px 0;
+        }
+
+
+        /* =========================
+           MAIN PAGE
+        ========================= */
+
+        .signup-page {
+            position: relative;
+
+            width: 90%;
+            max-width: 1000px;
+
+            min-height: 620px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            background: white;
+
+            border-radius: 24px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 20px 55px rgba(
+                    30,
+                    70,
+                    100,
+                    0.12
+                );
+        }
+
+
+        /* =========================
+           LEFT SIDE
+        ========================= */
+
+        .signup-info {
+            position: relative;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #e5f3ff,
+                    #f8fbff
+                );
+
+            padding: 55px 48px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+
+        .signup-info::after {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            border-radius: 50%;
+
+            background: rgba(
+                93,
+                162,
+                207,
+                0.08
+            );
+
+            right: -90px;
+            bottom: -90px;
+        }
+
+
+        .brand {
+            font-size: 32px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            color: #1769aa;
+
+            margin-bottom: 22px;
+        }
+
+
+        .welcome-label {
+            display: inline-block;
+
+            width: fit-content;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            background: #ffffff;
+
+            color: #1769aa;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.5px;
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 4px 12px rgba(
+                    30,
+                    70,
+                    100,
+                    0.06
+                );
+        }
+
+
+        .signup-info h1 {
+            font-size: 34px;
+
+            line-height: 1.25;
+
+            letter-spacing: -0.6px;
+
+            color: #173b5c;
+
+            margin: 0 0 18px;
+
+            max-width: 450px;
+        }
+
+
+        .signup-info p {
+            font-size: 16px;
+
+            line-height: 1.7;
+
+            color: #61748a;
+
+            max-width: 420px;
+
+            margin: 0;
+        }
+
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+            margin-top: 32px;
+
+            display: grid;
+
+            gap: 14px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .feature {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color: #3f5b70;
+
+            font-weight: 600;
+
+            font-size: 14px;
+        }
+
+
+        .feature-icon {
+            width: 36px;
+            height: 36px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #ffffff;
+
+            border-radius: 10px;
+
+            color: #1769aa;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 4px 12px rgba(
+                    30,
+                    70,
+                    100,
+                    0.08
+                );
+        }
+
+
+        /* =========================
+           RIGHT SIDE
+        ========================= */
+
+        .signup-form-section {
+            padding: 50px 48px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .signup-form-section h2 {
+            margin: 0 0 8px;
+
+            font-size: 29px;
+
+            letter-spacing: -0.4px;
+
+            color: #173b5c;
+        }
+
+
+        .subtitle {
+            margin: 0 0 30px;
+
+            color: #718398;
+
+            line-height: 1.5;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #334e63;
+
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+
+        .form-group input {
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid #d5e2eb;
+
+            border-radius: 11px;
+
+            background: #fbfdff;
+
+            color: #172033;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s,
+                box-shadow 0.2s,
+                background 0.2s;
+        }
+
+
+        .form-group input::placeholder {
+            color: #9aabba;
+        }
+
+
+        .form-group input:hover {
+            border-color: #bfd2df;
+        }
+
+
+        .form-group input:focus {
+            border-color: #5da2cf;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 0 0 3px rgba(
+                    93,
+                    162,
+                    207,
+                    0.12
+                );
+        }
+
+
+        /* =========================
+           SIGNUP BUTTON
+        ========================= */
+
+        .signup-button {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: #1976b9;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            margin-top: 5px;
+
+            transition:
+                background 0.2s,
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+
+        .signup-button:hover {
+            background: #125b91;
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 8px 18px rgba(
+                    25,
+                    118,
+                    185,
+                    0.18
+                );
+        }
+
+
+        .signup-button:active {
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           LOGIN LINK
+        ========================= */
+
+        .login-text {
+            text-align: center;
+
+            margin-top: 24px;
+
+            color: #718398;
+
+            font-size: 14px;
+        }
+
+
+        .login-text a {
+            color: #1769aa;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+
+        .login-text a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           TABLET / MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            body {
+                padding: 25px 0;
+            }
+
+
+            .signup-page {
+                grid-template-columns: 1fr;
+
+                width: 92%;
+
+                min-height: auto;
+
+                border-radius: 20px;
+            }
+
+
+            .signup-info {
+                padding: 40px 32px;
+            }
+
+
+            .signup-info h1 {
+                font-size: 29px;
+            }
+
+
+            .signup-form-section {
+                padding: 40px 32px;
+            }
+
+        }
+
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 15px 0;
+            }
+
+
+            .signup-page {
+                width: 94%;
+
+                border-radius: 18px;
+            }
+
+
+            .signup-info {
+                padding: 30px 22px;
+            }
+
+
+            .brand {
+                font-size: 27px;
+
+                margin-bottom: 17px;
+            }
+
+
+            .welcome-label {
+                font-size: 11px;
+
+                padding: 6px 10px;
+            }
+
+
+            .signup-info h1 {
+                font-size: 25px;
+
+                line-height: 1.3;
+            }
+
+
+            .signup-info p {
+                font-size: 14px;
+
+                line-height: 1.6;
+            }
+
+
+            .features {
+                margin-top: 24px;
+
+                gap: 11px;
+            }
+
+
+            .feature {
+                font-size: 13px;
+            }
+
+
+            .feature-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+
+            .signup-form-section {
+                padding: 30px 22px;
+            }
+
+
+            .signup-form-section h2 {
+                font-size: 25px;
+            }
+
+
+            .subtitle {
+                margin-bottom: 24px;
+            }
+
+
+            .form-group input {
+                padding: 13px;
+            }
+
+
+            .signup-button {
+                padding: 13px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="signup-page">
+
+
+        <!-- =========================
+             LEFT INFORMATION
+        ========================= -->
+
+        <section class="signup-info">
+
+
+            <div class="brand">
+                REVIORA
+            </div>
+
+
+            <div class="welcome-label">
+                START YOUR JOURNEY
+            </div>
+
+
+            <h1>
+                Start your journey
+                to better exam preparation.
+            </h1>
+
+
+            <p>
+                Create your REVIORA account
+                and keep your subjects, study
+                sessions and progress organized
+                in one place.
+            </p>
+
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    Track your readiness
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    Record your study sessions
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    Practice with quizzes
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    Monitor your progress
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================
+             SIGNUP FORM
+        ========================= -->
+
+        <section class="signup-form-section">
+
+
+            <h2>
+                Create Account
+            </h2>
+
+
+            <p class="subtitle">
+                Enter your details to get started.
+            </p>
+
+
+            <form id="signupForm">
+
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="signup-button"
+                >
+                    Create Account
+                </button>
+
+
+            </form>
+
+
+            <p class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </p>
+
+
+        </section>
+
+
+    </main>
+
+
+    <script>
+
+        /* =========================
+           SIGNUP
+        ========================= */
+
+        const signupForm =
+            document.getElementById(
+                "signupForm"
+            );
+
+
+        signupForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    document.getElementById(
+                        "name"
+                    ).value.trim();
+
+
+                const email =
+                    document.getElementById(
+                        "email"
+                    ).value.trim();
+
+
+                const password =
+                    document.getElementById(
+                        "password"
+                    ).value;
+
+
+                if (
+                    !name ||
+                    !email ||
+                    !password
+                ) {
+
+                    alert(
+                        "Please fill in all fields."
+                    );
+
+                    return;
+                }
+
+
+                const student = {
+
+                    name: name,
+
+                    email: email,
+
+                    password: password
+
+                };
+
+
+                localStorage.setItem(
+                    "student",
+                    JSON.stringify(student)
+                );
+
+
+                alert(
+                    "Account created successfully! 🎉"
+                );
+
+
+                window.location.href =
+                    "login.html";
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

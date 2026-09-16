@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>REVIORA - Quiz</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f4f8fc;
+
+            color: #172033;
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .quiz-nav {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 17px 6%;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #dce7ef;
+
+            box-shadow:
+                0 2px 12px rgba(
+                    30,
+                    70,
+                    100,
+                    0.04
+                );
+        }
+
+
+        .quiz-brand {
+            color: #1769aa;
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            letter-spacing: -0.4px;
+        }
+
+
+        .quiz-nav a {
+            display: inline-flex;
+
+            align-items: center;
+
+            color: #43556b;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition: 0.2s;
+        }
+
+
+        .quiz-nav a:hover {
+            color: #1769aa;
+
+            transform: translateX(-2px);
+        }
+
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .quiz-page {
+            width: 90%;
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            padding: 30px 0 60px;
+        }
+
+
+        /* =========================
+           QUIZ HEADER
+        ========================= */
+
+        .quiz-header {
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e7f4fd,
+                    #f8fbfe
+                );
+
+            border: 1px solid #cfe4f2;
+
+            padding: 42px 30px;
+
+            border-radius: 22px;
+
+            text-align: center;
+
+            margin-bottom: 22px;
+        }
+
+
+        .quiz-header::after {
+            content: "";
+
+            position: absolute;
+
+            width: 160px;
+            height: 160px;
+
+            right: -65px;
+            top: -75px;
+
+            border-radius: 50%;
+
+            background: rgba(
+                93,
+                162,
+                207,
+                0.08
+            );
+        }
+
+
+        .quiz-header h1 {
+            position: relative;
+
+            z-index: 1;
+
+            margin: 0 0 13px;
+
+            color: #173b5c;
+
+            font-size: 32px;
+
+            letter-spacing: -0.5px;
+        }
+
+
+        .quiz-header p {
+            position: relative;
+
+            z-index: 1;
+
+            margin: 7px 0;
+
+            color: #61748a;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        #quizSubject {
+            color: #1769aa;
+
+            font-size: 18px;
+
+            font-weight: 800;
+        }
+
+
+        #quizTopic {
+            color: #66798c;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           QUESTION CARD
+        ========================= */
+
+        .question-card {
+            background: #ffffff;
+
+            border: 1px solid #dce7ef;
+
+            padding: 30px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 7px 22px rgba(
+                    30,
+                    70,
+                    100,
+                    0.06
+                );
+        }
+
+
+        .question-number {
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 7px 12px;
+
+            border-radius: 8px;
+
+            background: #e5f3fc;
+
+            color: #1769aa;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            margin-bottom: 17px;
+        }
+
+
+        .question-text {
+            margin: 0 0 24px;
+
+            color: #173b5c;
+
+            font-size: 22px;
+
+            line-height: 1.5;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           OPTIONS
+        ========================= */
+
+        .options {
+            display: grid;
+
+            gap: 11px;
+        }
+
+
+        .option {
+            width: 100%;
+
+            padding: 16px 17px;
+
+            border: 2px solid #dce7ef;
+
+            border-radius: 11px;
+
+            background: #ffffff;
+
+            color: #30465a;
+
+            text-align: left;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            line-height: 1.45;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s,
+                border-color 0.2s,
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+
+        .option:hover {
+            border-color: #8abddd;
+
+            background: #f4faff;
+
+            transform: translateX(2px);
+        }
+
+
+        .option:active {
+            transform: translateX(0);
+        }
+
+
+        .option.selected {
+            border-color: #1976b9;
+
+            background: #eaf6ff;
+
+            color: #125b91;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 3px 10px rgba(
+                    25,
+                    118,
+                    185,
+                    0.07
+                );
+        }
+
+
+        /* =========================
+           CONTROLS
+        ========================= */
+
+        .quiz-controls {
+            display: flex;
+
+            justify-content: flex-end;
+
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #edf2f6;
+        }
+
+
+        .quiz-button {
+            border: none;
+
+            border-radius: 9px;
+
+            padding: 12px 24px;
+
+            background: #1976b9;
+
+            color: #ffffff;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s,
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+
+        .quiz-button:hover {
+            background: #125b91;
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 6px 14px rgba(
+                    25,
+                    118,
+                    185,
+                    0.16
+                );
+        }
+
+
+        .quiz-button:active {
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           RESULT CARD
+        ========================= */
+
+        .result-card {
+            display: none;
+
+            background: #ffffff;
+
+            border: 1px solid #dce7ef;
+
+            padding: 30px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 7px 22px rgba(
+                    30,
+                    70,
+                    100,
+                    0.06
+                );
+        }
+
+
+        .result-card h2 {
+            margin: 0 0 8px;
+
+            color: #173b5c;
+
+            font-size: 25px;
+        }
+
+
+        .result-card > p {
+            margin: 0;
+
+            color: #61748a;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+
+        .score {
+            margin: 18px 0;
+
+            color: #1976b9;
+
+            font-size: 36px;
+
+            font-weight: 800;
+
+            letter-spacing: -0.5px;
+        }
+
+
+        /* =========================
+           SAVED MESSAGE
+        ========================= */
+
+        .saved-message {
+            margin-top: 18px;
+
+            padding: 14px 16px;
+
+            background: #ecf8f2;
+
+            border: 1px solid #a4d4ba;
+
+            border-radius: 10px;
+
+            color: #256344;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           REVIEW
+        ========================= */
+
+        .review-section {
+            margin-top: 30px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid #e7eef4;
+        }
+
+
+        .review-section h3 {
+            margin: 0 0 17px;
+
+            color: #173b5c;
+
+            font-size: 19px;
+        }
+
+
+        .review-item {
+            padding: 18px;
+
+            margin-bottom: 12px;
+
+            border: 1px solid #dce7ef;
+
+            border-radius: 12px;
+
+            background: #f9fbfd;
+        }
+
+
+        .review-question {
+            margin-bottom: 12px;
+
+            color: #173b5c;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            line-height: 1.5;
+        }
+
+
+        .your-answer {
+            margin: 7px 0;
+
+            color: #c0392b;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        .your-answer.correct {
+            color: #26734d;
+        }
+
+
+        .correct-answer {
+            margin: 7px 0;
+
+            color: #26734d;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            line-height: 1.5;
+        }
+
+
+        .explanation {
+            margin-top: 12px;
+
+            padding: 12px;
+
+            background: #eef7fd;
+
+            border-left: 4px solid #6eafd5;
+
+            border-radius: 7px;
+
+            color: #42586c;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           BACK LINK
+        ========================= */
+
+        .back-link {
+            display: inline-flex;
+
+            align-items: center;
+
+            margin-top: 22px;
+
+            color: #1769aa;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition: 0.2s;
+        }
+
+
+        .back-link:hover {
+            color: #125b91;
+
+            transform: translateX(-2px);
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .quiz-nav {
+                padding: 15px 5%;
+            }
+
+
+            .quiz-brand {
+                font-size: 22px;
+            }
+
+
+            .quiz-nav a {
+                font-size: 13px;
+            }
+
+
+            .quiz-page {
+                width: 94%;
+
+                padding: 20px 0 45px;
+            }
+
+
+            .quiz-header {
+                padding: 32px 18px;
+
+                border-radius: 18px;
+            }
+
+
+            .quiz-header h1 {
+                font-size: 28px;
+            }
+
+
+            #quizSubject {
+                font-size: 16px;
+            }
+
+
+            #quizTopic {
+                font-size: 13px;
+            }
+
+
+            .question-card,
+            .result-card {
+                padding: 21px 17px;
+
+                border-radius: 16px;
+            }
+
+
+            .question-text {
+                font-size: 19px;
+
+                line-height: 1.45;
+            }
+
+
+            .option {
+                padding: 14px;
+
+                font-size: 14px;
+            }
+
+
+            .quiz-controls {
+                justify-content: stretch;
+            }
+
+
+            .quiz-button {
+                width: 100%;
+            }
+
+
+            .score {
+                font-size: 31px;
+            }
+
+
+            .review-item {
+                padding: 15px;
+            }
+
+        }
+
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media (max-width: 450px) {
+
+            .quiz-nav {
+                padding: 14px 4%;
+            }
+
+
+            .quiz-brand {
+                font-size: 20px;
+            }
+
+
+            .quiz-nav a {
+                font-size: 12px;
+            }
+
+
+            .quiz-page {
+                width: 95%;
+            }
+
+
+            .quiz-header {
+                padding: 27px 15px;
+            }
+
+
+            .quiz-header h1 {
+                font-size: 25px;
+            }
+
+
+            .question-card,
+            .result-card {
+                padding: 19px 14px;
+            }
+
+
+            .question-number {
+                font-size: 12px;
+            }
+
+
+            .question-text {
+                font-size: 18px;
+            }
+
+
+            .option {
+                font-size: 13px;
+
+                padding: 13px;
+            }
+
+
+            .review-question {
+                font-size: 13px;
+            }
+
+
+            .your-answer,
+            .correct-answer,
+            .explanation {
+                font-size: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav class="quiz-nav">
+
+        <div class="quiz-brand">
+            REVIORA
+        </div>
+
+
+        <a href="topics.html">
+            ← Learning Hub
+        </a>
+
+    </nav>
+
+
+    <main class="quiz-page">
+
+
+        <!-- =========================
+             QUIZ HEADER
+        ========================= -->
+
+        <div class="quiz-header">
+
+            <h1>
+                Quiz 🎯
+            </h1>
+
+
+            <p id="quizSubject">
+                Subject
+            </p>
+
+
+            <p id="quizTopic">
+                Topic
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             QUESTION CARD
+        ========================= -->
+
+        <div
+            class="question-card"
+            id="quizCard"
+        >
+
+            <div
+                class="question-number"
+                id="questionNumber"
+            ></div>
+
+
+            <div
+                class="question-text"
+                id="questionText"
+            ></div>
+
+
+            <div
+                class="options"
+                id="options"
+            ></div>
+
+
+            <div class="quiz-controls">
+
+                <button
+                    class="quiz-button"
+                    id="nextButton"
+                    onclick="nextQuestion()"
+                >
+                    Next
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             RESULT CARD
+        ========================= -->
+
+        <div
+            class="result-card"
+            id="resultCard"
+        >
+
+            <h2>
+                Quiz Completed 🎉
+            </h2>
+
+
+            <div
+                class="score"
+                id="scoreText"
+            ></div>
+
+
+            <p id="resultMessage"></p>
+
+
+            <div id="savedMessage"></div>
+
+
+            <div class="review-section">
+
+                <h3>
+                    📋 Answer Review
+                </h3>
+
+
+                <div
+                    id="reviewContainer"
+                ></div>
+
+            </div>
+
+
+            <a
+                href="topics.html"
+                class="back-link"
+            >
+                ← Back to Learning Hub
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+
+        /* ================================
+           GET SELECTED QUIZ
+        ================================= */
+
+        const selectedSubject =
+            localStorage.getItem(
+                "selectedQuizSubject"
+            );
+
+
+        const selectedTopic =
+            localStorage.getItem(
+                "selectedQuizTopic"
+            );
+
+
+        document.getElementById(
+            "quizSubject"
+        ).textContent =
+            selectedSubject || "Subject";
+
+
+        document.getElementById(
+            "quizTopic"
+        ).textContent =
+            selectedTopic || "Topic";
+
+
+        /* ================================
+           QUIZ QUESTIONS
+        ================================= */
+
+        const quizQuestions = {
+
+            "DBMS": {
+
+                "Introduction to DBMS": [
+
+                    {
+                        question:
+                            "What does DBMS stand for?",
+
+                        options: [
+                            "Database Management System",
+                            "Data Backup Management System",
+                            "Database Machine System",
+                            "Data Management Software"
+                        ],
+
+                        answer:
+                            "Database Management System",
+
+                        explanation:
+                            "DBMS stands for Database Management System. It is software used to create, store, organize and manage databases."
+                    },
+
+
+                    {
+                        question:
+                            "Which of the following is a DBMS?",
+
+                        options: [
+                            "MySQL",
+                            "HTML",
+                            "CSS",
+                            "JavaScript"
+                        ],
+
+                        answer:
+                            "MySQL",
+
+                        explanation:
+                            "MySQL is a popular relational database management system."
+                    },
+
+
+                    {
+                        question:
+                            "What is the main purpose of a DBMS?",
+
+                        options: [
+                            "To manage and organize data",
+                            "To design web pages",
+                            "To create animations",
+                            "To edit images"
+                        ],
+
+                        answer:
+                            "To manage and organize data",
+
+                        explanation:
+                            "A DBMS provides tools to store, retrieve, update and manage data efficiently."
+                    },
+
+
+                    {
+                        question:
+                            "Which of these is an advantage of a DBMS?",
+
+                        options: [
+                            "Reduced data redundancy",
+                            "Increased data duplication",
+                            "No data security",
+                            "No data organization"
+                        ],
+
+                        answer:
+                            "Reduced data redundancy",
+
+                        explanation:
+                            "A DBMS can reduce unnecessary duplication of data through proper database design."
+                    },
+
+
+                    {
+                        question:
+                            "Which language is commonly used to interact with relational databases?",
+
+                        options: [
+                            "SQL",
+                            "HTML",
+                            "CSS",
+                            "XML"
+                        ],
+
+                        answer:
+                            "SQL",
+
+                        explanation:
+                            "SQL, or Structured Query Language, is commonly used to create, retrieve, update and manage data in relational databases."
+                    }
+
+                ],
+
+
+                "ER Model": [
+
+                    {
+                        question:
+                            "What does ER stand for in database design?",
+
+                        options: [
+                            "Entity Relationship",
+                            "Electronic Record",
+                            "Entity Record",
+                            "External Relationship"
+                        ],
+
+                        answer:
+                            "Entity Relationship",
+
+                        explanation:
+                            "ER stands for Entity Relationship. The ER model represents entities and the relationships between them."
+                    },
+
+
+                    {
+                        question:
+                            "Which shape represents an entity in an ER diagram?",
+
+                        options: [
+                            "Rectangle",
+                            "Circle",
+                            "Diamond",
+                            "Triangle"
+                        ],
+
+                        answer:
+                            "Rectangle",
+
+                        explanation:
+                            "An entity is traditionally represented using a rectangle in an ER diagram."
+                    },
+
+
+                    {
+                        question:
+                            "Which shape represents a relationship in an ER diagram?",
+
+                        options: [
+                            "Diamond",
+                            "Rectangle",
+                            "Circle",
+                            "Triangle"
+                        ],
+
+                        answer:
+                            "Diamond",
+
+                        explanation:
+                            "A relationship is traditionally represented using a diamond shape in an ER diagram."
+                    },
+
+
+                    {
+                        question:
+                            "What is an attribute?",
+
+                        options: [
+                            "A property of an entity",
+                            "A database server",
+                            "A type of relationship",
+                            "A programming language"
+                        ],
+
+                        answer:
+                            "A property of an entity",
+
+                        explanation:
+                            "An attribute describes a property or characteristic of an entity."
+                    },
+
+
+                    {
+                        question:
+                            "Which of the following can be an entity?",
+
+                        options: [
+                            "Student",
+                            "Name",
+                            "Age",
+                            "Roll Number"
+                        ],
+
+                        answer:
+                            "Student",
+
+                        explanation:
+                            "Student can represent an entity, while name, age and roll number can be attributes describing a student."
+                    }
+
+                ]
+
+            }
+
+        };
+
+
+        /* ================================
+           QUIZ VARIABLES
+        ================================= */
+
+        let questions = [];
+
+        let currentQuestion = 0;
+
+        let score = 0;
+
+        let selectedAnswer = null;
+
+        let userAnswers = [];
+
+
+        /* ================================
+           LOAD QUESTIONS
+        ================================= */
+
+        function loadQuestions() {
+
+            if (
+                quizQuestions[selectedSubject] &&
+                quizQuestions[selectedSubject][selectedTopic]
+            ) {
+
+                questions =
+                    quizQuestions[selectedSubject]
+                        [selectedTopic];
+
+                showQuestion();
+
+            } else {
+
+                document.getElementById(
+                    "quizCard"
+                ).innerHTML = `
+
+                    <h2>
+                        Quiz Coming Soon 🚧
+                    </h2>
+
+                    <p>
+                        Questions for this topic
+                        will be added soon.
+                    </p>
+
+                    <a
+                        href="topics.html"
+                        class="back-link"
+                    >
+                        ← Back to Learning Hub
+                    </a>
+
+                `;
+
+            }
+
+        }
+
+
+        /* ================================
+           SHOW QUESTION
+        ================================= */
+
+        function showQuestion() {
+
+            selectedAnswer = null;
+
+
+            const question =
+                questions[currentQuestion];
+
+
+            document.getElementById(
+                "questionNumber"
+            ).textContent =
+                `Question ${
+                    currentQuestion + 1
+                } of ${
+                    questions.length
+                }`;
+
+
+            document.getElementById(
+                "questionText"
+            ).textContent =
+                question.question;
+
+
+            const optionsContainer =
+                document.getElementById(
+                    "options"
+                );
+
+
+            optionsContainer.innerHTML = "";
+
+
+            question.options.forEach(
+                function(option) {
+
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    button.className =
+                        "option";
+
+
+                    button.textContent =
+                        option;
+
+
+                    button.onclick =
+                        function() {
+
+                            selectOption(
+                                button,
+                                option
+                            );
+
+                        };
+
+
+                    optionsContainer.appendChild(
+                        button
+                    );
+
+                }
+            );
+
+
+            if (
+                currentQuestion ===
+                questions.length - 1
+            ) {
+
+                document.getElementById(
+                    "nextButton"
+                ).textContent =
+                    "Finish Quiz";
+
+            } else {
+
+                document.getElementById(
+                    "nextButton"
+                ).textContent =
+                    "Next";
+
+            }
+
+        }
+
+
+        /* ================================
+           SELECT OPTION
+        ================================= */
+
+        function selectOption(
+            button,
+            answer
+        ) {
+
+            const allOptions =
+                document.querySelectorAll(
+                    ".option"
+                );
+
+
+            allOptions.forEach(
+                function(option) {
+
+                    option.classList.remove(
+                        "selected"
+                    );
+
+                }
+            );
+
+
+            button.classList.add(
+                "selected"
+            );
+
+
+            selectedAnswer =
+                answer;
+
+        }
+
+
+        /* ================================
+           NEXT QUESTION
+        ================================= */
+
+        function nextQuestion() {
+
+            if (
+                selectedAnswer === null
+            ) {
+
+                alert(
+                    "Please select an answer first."
+                );
+
+                return;
+
+            }
+
+
+            const correctAnswer =
+                questions[
+                    currentQuestion
+                ].answer;
+
+
+            if (
+                selectedAnswer ===
+                correctAnswer
+            ) {
+
+                score++;
+
+            }
+
+
+            userAnswers.push(
+                selectedAnswer
+            );
+
+
+            if (
+                currentQuestion <
+                questions.length - 1
+            ) {
+
+                currentQuestion++;
+
+                showQuestion();
+
+            } else {
+
+                showResult();
+
+            }
+
+        }
+
+
+        /* ================================
+           SHOW RESULT
+        ================================= */
+
+        function showResult() {
+
+            document.getElementById(
+                "quizCard"
+            ).style.display =
+                "none";
+
+
+            document.getElementById(
+                "resultCard"
+            ).style.display =
+                "block";
+
+
+            const percentage =
+                Math.round(
+                    (score /
+                        questions.length) *
+                    100
+                );
+
+
+            document.getElementById(
+                "scoreText"
+            ).textContent =
+                `${score} / ${
+                    questions.length
+                } (${percentage}%)`;
+
+
+            let message = "";
+
+
+            if (
+                percentage >= 80
+            ) {
+
+                message =
+                    "Excellent! 🎉 You have a strong understanding of this topic.";
+
+            } else if (
+                percentage >= 60
+            ) {
+
+                message =
+                    "Good job! 👍 A little more revision will make you stronger.";
+
+            } else {
+
+                message =
+                    "Keep practicing! 📚 This topic needs more revision.";
+
+            }
+
+
+            document.getElementById(
+                "resultMessage"
+            ).textContent =
+                message;
+
+
+            saveQuizAsStudySession();
+
+            saveQuizResult();
+
+            showAnswerReview();
+
+        }
+
+
+        /* ================================
+           SAVE QUIZ RESULT
+        ================================= */
+
+        function saveQuizResult() {
+
+            const percentage =
+                Math.round(
+                    (score /
+                        questions.length) *
+                    100
+                );
+
+
+            localStorage.setItem(
+
+                "pendingQuizResult",
+
+                JSON.stringify({
+
+                    subject:
+                        selectedSubject,
+
+                    topic:
+                        selectedTopic,
+
+                    percentage:
+                        percentage
+
+                })
+
+            );
+
+        }
+
+
+        /* ================================
+           SAVE QUIZ AS STUDY SESSION
+        ================================= */
+
+        function saveQuizAsStudySession() {
+
+            const existingSessions =
+
+                JSON.parse(
+                    localStorage.getItem(
+                        "studySessions"
+                    )
+                ) || [];
+
+
+            const now =
+                new Date();
+
+
+            const today =
+
+                now.getFullYear() +
+                "-" +
+                String(
+                    now.getMonth() + 1
+                ).padStart(2, "0") +
+                "-" +
+                String(
+                    now.getDate()
+                ).padStart(2, "0");
+
+
+            const quizSession = {
+
+                id:
+                    Date.now(),
+
+                subject:
+                    selectedSubject,
+
+                hours:
+                    0.5,
+
+                date:
+                    today,
+
+                type:
+                    "Quiz",
+
+                topic:
+                    selectedTopic,
+
+                score:
+                    score,
+
+                totalQuestions:
+                    questions.length
+
+            };
+
+
+            existingSessions.push(
+                quizSession
+            );
+
+
+            localStorage.setItem(
+
+                "studySessions",
+
+                JSON.stringify(
+                    existingSessions
+                )
+
+            );
+
+
+            document.getElementById(
+                "savedMessage"
+            ).innerHTML = `
+
+                <div class="saved-message">
+
+                    ✅ Quiz saved as a study session!
+
+                    <br>
+
+                    📚 ${selectedSubject} -
+                    ${selectedTopic}
+
+                    <br>
+
+                    ⏱️ 0.5 study hours added
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* ================================
+           ANSWER REVIEW
+        ================================= */
+
+        function showAnswerReview() {
+
+            const reviewContainer =
+                document.getElementById(
+                    "reviewContainer"
+                );
+
+
+            reviewContainer.innerHTML =
+                "";
+
+
+            questions.forEach(
+                function(
+                    question,
+                    index
+                ) {
+
+                    const userAnswer =
+                        userAnswers[index];
+
+
+                    const correctAnswer =
+                        question.answer;
+
+
+                    const isCorrect =
+                        userAnswer ===
+                        correctAnswer;
+
+
+                    const reviewItem =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    reviewItem.className =
+                        "review-item";
+
+
+                    reviewItem.innerHTML = `
+
+                        <div class="review-question">
+
+                            Q${index + 1}.
+                            ${question.question}
+
+                        </div>
+
+
+                        <div class="your-answer ${
+                            isCorrect
+                                ? "correct"
+                                : ""
+                        }">
+
+                            Your answer:
+                            ${userAnswer}
+                            ${
+                                isCorrect
+                                    ? " ✅"
+                                    : " ❌"
+                            }
+
+                        </div>
+
+
+                        <div class="correct-answer">
+
+                            Correct answer:
+                            ${correctAnswer} ✅
+
+                        </div>
+
+
+                        <div class="explanation">
+
+                            💡 ${question.explanation}
+
+                        </div>
+
+                    `;
+
+
+                    reviewContainer.appendChild(
+                        reviewItem
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* ================================
+           START QUIZ
+        ================================= */
+
+        loadQuestions();
+
+    </script>
+
+</body>
+
+</html>
