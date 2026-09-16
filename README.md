@@ -1,7 +1,7 @@
 # REVIORA
 
 ### Know what you actually know.
-![REVIORA Dashboard](images/reviora-dashboard.png)
+![REVIORA Dashboard](reviora-dashboard.png)
 REVIORA is a study and exam-preparation tracker I built as a BCA student.
 It helps students keep track of their subjects, preparation level, study time, goals and revision needs — all in one place.
 
